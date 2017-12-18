@@ -69,3 +69,5 @@ yarn-error.log*
 
 /coverage
 /third-party
+
+ios/CryptoTracker.xcodeproj/project.pbxproj

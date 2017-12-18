@@ -1,19 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+import RefreshCoinData from './../Actions/RefreshCoinData';
 
-const Header = () => {
+class Header extends React.Component {
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  _onPressButton() {
+    console.log(this.props);
+    this.props.RefreshCoinData();
+  }
+
+  render() {
     return (
-        <View style={headerContainer}>
-            <Text style={header}>Crypto Tracker</Text>
+      <TouchableOpacity onPress={this._onPressButton}>
+        <View style={styles.headerContainer}>
+            <Text style={styles.header}>Crypto Tracker ⦾</Text>
         </View>
+      </TouchableOpacity>
     );
+  }
 }
 
 const styles = StyleSheet.create({
   headerContainer: {
     display: 'flex',
     marginTop: 25,
+    paddingBottom: 25,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -24,11 +41,16 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   header: {
+    paddingTop: 10,
     fontWeight: 'bold',
     fontSize: 20
   },
 });
 
-const { headerContainer, header } = styles;
+const mapStateToProps = (state, ownProps) => {
+  return {
+      crypto: state.crypto
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps, { RefreshCoinData })(Header)

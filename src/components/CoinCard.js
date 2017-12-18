@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Image
 } from 'react-native';
-import { images } from '../Utils/CoinIcons';
+import { images } from './../Utils/CoinIcons';
 
 const styles = StyleSheet.create({
     container: {
